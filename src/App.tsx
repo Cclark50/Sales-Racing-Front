@@ -25,9 +25,7 @@ const QUOTA = 30000;
 
 function App() {
     const [people, setPeople] = useState<Person[]>([]);
-    // const peopleRef = useRef(people);
     const [connectionStatus, setConnectionStatus] = useState<boolean>(false);
-    const [recentSales, setRecentSales] = useState([]);
     const connectionRef = useRef<signalR.HubConnection | null>(null);
 
     async function loadPeople () {
@@ -103,7 +101,7 @@ function App() {
         }
     }, []);
 
-    const getProgress = (person) => {
+    const getProgress = (person:Person) => {
         return Math.min((person.currSales / QUOTA)* 100, 100);
     }
 
@@ -136,25 +134,30 @@ function App() {
         if(people.length === 0) return <p>no people</p>;
         return (
             <div>
-                <table>
-                    {people.map(person => (
-                        <tr key = {person.id}>
-                            <td>{person.id}</td>
-                            <td>{person.name}</td>
-                            <td>{person.team}</td>
-                            <td>{person.currSales}</td>
-                        </tr>
-                    ))}
-                </table>
+                <p>Sales People</p>
+                <div>
+                    <table>
+                        {people.map(person => (
+                            <tr key = {person.id}>
+                                <td>{person.id}</td>
+                                <td>{person.name}</td>
+                                <td>{person.team}</td>
+                                <td>{person.currSales}</td>
+                                <td>{getProgress(person).toFixed(2)}%</td>
+                            </tr>
+                        ))}
+                    </table>
+                </div>
             </div>
         )
     }
 
     return (
         <div className="App">
-            <p>Hello World</p>
-            {peopleTable()}
-            <button onClick={() => testSale()}>Test Sale</button>
+            <div className="peopleTable">
+                {peopleTable()}
+            </div>
+            <button className={"testButton"} onClick={() => testSale()}>Test Sale</button>
         </div>
     )
 }

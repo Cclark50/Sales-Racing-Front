@@ -33,6 +33,30 @@
   }
 }
 
+table{
+  table-layout: fixed;
+  width: 80%;
+  min-width: 500px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.peopleTable{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+th, td{
+  padding: 0.6em;
+  border: 0.2em solid #ccc;
+}
+
+.testButton{
+  border: 1px #646cff solid;
+  padding: 1em;
+}
+
 .card {
   padding: 2em;
 }
