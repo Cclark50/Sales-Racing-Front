@@ -3,6 +3,17 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .logo {
@@ -42,9 +53,7 @@ table{
 }
 
 .peopleTable{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 
 th, td{
@@ -54,7 +63,7 @@ th, td{
 
 .testButton{
   border: 1px #646cff solid;
-  padding: 1em;
+  margin-top: 1rem;
 }
 
 .card {

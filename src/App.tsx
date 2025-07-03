@@ -108,7 +108,7 @@ function App() {
     const testSale = async () => {
         if (people.length === 0) return;
 
-        const randomPerson = people[Math.floor(Math.random() * people.length)];
+        const randomPerson = people[(Math.floor(Math.random() * people.length))];
         console.log(randomPerson);
         const testTransaction : Transaction = {
             salesPersonId: randomPerson.id,
