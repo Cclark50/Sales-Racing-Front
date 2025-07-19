@@ -30,16 +30,16 @@
 
   <!-- 25% milestone -->
   <line x1="230" y1="10" x2="230" y2="390" stroke="#ffff00" stroke-width="2" stroke-dasharray="5,5"/>
-  <text x="235" y="25" fill="#ffff00" font-family="Arial" font-size="14" font-weight="bold">$7.5K</text>
+  <text x="235" y="420" fill="#ffff00" font-family="Arial" font-size="14" font-weight="bold">{{QUARTER}}</text>
 
   <!-- 50% milestone -->
   <line x1="400" y1="10" x2="400" y2="390" stroke="#ffff00" stroke-width="2" stroke-dasharray="5,5"/>
-  <text x="405" y="25" fill="#ffff00" font-family="Arial" font-size="14" font-weight="bold">$15K</text>
+  <text x="405" y="420" fill="#ffff00" font-family="Arial" font-size="14" font-weight="bold">{{HALF}}</text>
 
   <!-- 75% milestone -->
   <line x1="570" y1="10" x2="570" y2="390" stroke="#ffff00" stroke-width="2" stroke-dasharray="5,5"/>
-  <text x="575" y="25" fill="#ffff00" font-family="Arial" font-size="14" font-weight="bold">$22.5K</text>
+  <text x="575" y="420" fill="#ffff00" font-family="Arial" font-size="14" font-weight="bold">{{THREEQ}}</text>
 
   <!-- Finish line label -->
-  <text x="675" y="25" fill="#ff0000" font-family="Arial" font-size="14" font-weight="bold">$30K</text>
+  <text x="725" y="420" fill="#ff0000" font-family="Arial" font-size="14" font-weight="bold">{{FINISH}}</text>
 </svg>

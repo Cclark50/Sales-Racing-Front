@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from 'react'
 import './App.css'
 import * as signalR from '@microsoft/signalr';
+import RaceTrack from './RaceTrack';
 
 const LOCALHOST = 'http://localhost:5177/api/'
 
@@ -112,7 +113,7 @@ function App() {
         console.log(randomPerson);
         const testTransaction : Transaction = {
             salesPersonId: randomPerson.id,
-            amount: Math.floor(Math.random() * 10)
+            amount: Math.floor(Math.random() * 500)
         }
 
         try {
@@ -128,36 +129,62 @@ function App() {
         }
     };
 
-    function peopleTable(){
-        console.log("Drawing table: " , people);
-        if(!people) return <p>people doesnt exist</p>
-        if(people.length === 0) return <p>no people</p>;
-        return (
-            <div>
-                <p>Sales People</p>
-                <div>
-                    <table>
-                        {people.map(person => (
-                            <tr key = {person.id}>
-                                <td>{person.id}</td>
-                                <td>{person.name}</td>
-                                <td>{person.team}</td>
-                                <td>{person.currSales}</td>
-                                <td>{getProgress(person).toFixed(2)}%</td>
-                            </tr>
-                        ))}
-                    </table>
-                </div>
-            </div>
-        )
-    }
+    // function peopleTable(){
+    //     console.log("Drawing table: " , people);
+    //     if(!people) return <p>people doesnt exist</p>
+    //     if(people.length === 0) return <p>no people</p>;
+    //     return (
+    //         <div>
+    //             <p>Sales People</p>
+    //             <div>
+    //                 <table>
+    //                     {people.map(person => (
+    //                         <tr key = {person.id}>
+    //                             <td>{person.id}</td>
+    //                             <td>{person.name}</td>
+    //                             <td>{person.team}</td>
+    //                             <td>{person.currSales}</td>
+    //                             <td>{getProgress(person).toFixed(2)}%</td>
+    //                         </tr>
+    //                     ))}
+    //                 </table>
+    //             </div>
+    //         </div>
+    //     )
+    // }
 
     return (
         <div className="App">
-            <div className="peopleTable">
-                {peopleTable()}
+            <div className={"scoreboard"}>
+                <h3>Sales Leaderboard</h3>
+                <ul className={"scoreboard-list"}>
+                    {people.map(person => (
+                        <li key={person.id} className={"scoreboard-item"}>
+                            <span className={"person-name"}>{person.name}</span>
+                            <span className={"person-sales"}>{person.currSales.toLocaleString()}</span>
+                        </li>
+                    ))}
+                </ul>
+                <div style={{marginTop: '1rem', fontSize: '0.9rem', color:'#888'}}>
+                    Connection: {connectionStatus ? '🟢 Connected': '🔴 Disconnected'}
+                </div>
             </div>
-            <button className={"testButton"} onClick={() => testSale()}>Test Sale</button>
+            <div className={"quota-display"}>
+                <h4>Sales Quota</h4>
+                <div className={"quota-amount"}>
+                    ${QUOTA.toLocaleString()}
+                </div>
+                <div className={"quota-subtitle"}>
+                    Target per salesperson
+                </div>
+            </div>
+            <div className={"race-track-container"}>
+                <RaceTrack people={people} quota={QUOTA} />
+            </div>
+
+            <div className={'controls'}>
+                <button className={"testButton"} onClick={() => testSale()}>Test Sale</button>
+            </div>
         </div>
     )
 }
