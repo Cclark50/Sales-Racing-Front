@@ -1,9 +1,0 @@
-﻿<svg width="150" height="100" viewBox="25 10 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="55" y="50" width="10" height="70" fill="#574826"/>
-    <path d="M 0 10 h 70 v 30 h 50 v 30 h -120 Z" fill="var(--car-body-color)" stroke-width="1" stroke="var(--car-outline-color)"/>
-    <circle cx="90" cy="70" r="20" fill="gray" stroke="black"/>
-    <circle cx="30" cy="70" r="20" fill="gray" stroke="black"/>
-    <path d="M 70 10 L 120 40 h -50 Z" fill="white"/>
-    <circle cx="90" cy="70" r="5" fill="black"/>
-    <circle cx="30" cy="70" r="5" fill="black"/>
-</svg>

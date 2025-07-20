@@ -21,6 +21,17 @@ const RaceTrack:  FC<RaceTrackProps> = ({people, quota}) =>{
     const carsRef = useRef<THREE.Group[]>([]);
     const animationFrameRef = useRef<number | null>(null);
 
+    function setIsometric (camera : THREE.OrthographicCamera, lookx : number, looky : number, lookz:number, distance : number ): void{
+        const x = distance * 0.707;
+        const z = distance * 0.707;
+        const y = distance * 0.577;
+
+        camera.position.x = x;
+        camera.position.y = y;
+        camera.position.z = z;
+        camera.lookAt(lookx, looky, lookz);
+    }
+
     useEffect(() => {
         if(!canvasRef.current){
             console.log('Canvas ref not found');
@@ -52,7 +63,11 @@ const RaceTrack:  FC<RaceTrackProps> = ({people, quota}) =>{
         const camera = new THREE.OrthographicCamera(
             -200, 200, 150, -150, 0.1, 1000
         );
-        camera.position.z = 10;
+        setIsometric(camera, 0, 0, 0, 10);
+        scene.add(new THREE.AxesHelper(100));
+        // camera.position.z = 10;
+
+
 
         const renderer = new THREE.WebGLRenderer({
             canvas:canvas,
