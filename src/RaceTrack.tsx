@@ -63,9 +63,8 @@ const RaceTrack:  FC<RaceTrackProps> = ({people, quota}) =>{
         const camera = new THREE.OrthographicCamera(
             -200, 200, 150, -150, 0.1, 1000
         );
-        setIsometric(camera, 0, 0, 0, 10);
+        setIsometric(camera, 0, 0, 0, 700);
         scene.add(new THREE.AxesHelper(100));
-        // camera.position.z = 10;
 
 
 
@@ -76,22 +75,29 @@ const RaceTrack:  FC<RaceTrackProps> = ({people, quota}) =>{
         renderer.setSize(width, height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        const trackGeometry = new THREE.RingGeometry(80, 120, 32);
+        const trackGeometry = new THREE.EllipseCurve(0, 0, 100, 100, 0, 2 * Math.PI, false, 0).getPoints(50);
+        const trackShape = new THREE.Shape(trackGeometry);
+        const ellipseGeo = new THREE.BufferGeometry().setFromPoints(trackGeometry);
+        const extrudeSettings = {
+            steps : 5,
+            depth : 20
+        };
+        const ellipseMesh = new THREE.ExtrudeGeometry(trackShape, extrudeSettings);
         const trackMaterial = new THREE.MeshBasicMaterial({
             color:0x444444,
             side:THREE.DoubleSide
         })
-        const track = new THREE.Mesh(trackGeometry, trackMaterial);
+        const track = new THREE.Mesh(ellipseMesh, trackMaterial);
         scene.add(track)
 
-        const innerLineGeometry = new THREE.RingGeometry(79,81,32);
-        const outerLineGeometry = new THREE.RingGeometry(119, 121,32);
-        const lineMaterial = new THREE.MeshBasicMaterial({color:0xffffff});
-
-        const innerLine = new THREE.Mesh(innerLineGeometry, lineMaterial);
-        const outerLine = new THREE.Mesh(outerLineGeometry, lineMaterial);
-        scene.add(innerLine);
-        scene.add(outerLine);
+        // const innerLineGeometry = new THREE.RingGeometry(79,81,32);
+        // const outerLineGeometry = new THREE.RingGeometry(119, 121,32);
+        // const lineMaterial = new THREE.MeshBasicMaterial({color:0xffffff});
+        //
+        // const innerLine = new THREE.Mesh(innerLineGeometry, lineMaterial);
+        // const outerLine = new THREE.Mesh(outerLineGeometry, lineMaterial);
+        // scene.add(innerLine);
+        // scene.add(outerLine);
 
         sceneRef.current = scene;
         rendererRef.current = renderer;
